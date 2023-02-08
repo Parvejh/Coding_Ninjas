@@ -1,0 +1,49 @@
+
+
+import java.util.Scanner;
+
+public class Solution{
+
+    public static boolean checkNumber(int input[], int x){
+
+		return checkNumberHelper(input,0,x);
+       
+    }
+
+	public static boolean checkNumberHelper(int[] input, int startIndex, int x){
+		if(startIndex==input.length) return false;
+		if(input[startIndex]==x) return true;
+		else return checkNumberHelper(input, startIndex+1 , x);
+	}
+
+    //Withour Helper Method
+    
+    // public static boolean checkNumber(int input[], int x) {
+    //     if(input.length==1 && input[0]!=x) return false;
+
+    //     if(input[0]==x) return true;
+    //     int[] newArray = new int[input.length-1];
+    //     for(int i=0; i<input.length-1 ; i++){
+    //         newArray[i] = input[i+1];
+    //     }
+    //     return checkNumber(newArray,x);
+    // }
+
+
+}
+
+public class Main{
+
+    static Scanner s = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		int n = s.nextInt();
+		int input[] = new int[n];
+		for(int i = 0; i < n; i++) {
+			input[i] = s.nextInt();
+		}
+		int x = s.nextInt();
+		System.out.println(Solution.checkNumber(input, x));
+	}
+
+}
