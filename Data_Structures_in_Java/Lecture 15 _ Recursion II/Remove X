@@ -1,0 +1,32 @@
+
+
+// Given a string, compute recursively a new string where all 'x' chars have been removed.
+
+import java.util.Scanner;
+
+public class Solution{
+
+    public static String removeX(String input) {
+		if(input.length() == 0) return "";
+
+		String ans = input.substring(1);
+		if(input.charAt(0)=='x')
+			return removeX(ans);
+		else
+			return input.charAt(0) + removeX(ans);
+
+    }
+   
+}
+
+public class Main{
+
+    static Scanner s = new Scanner(System.in);
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		String input = s.nextLine();
+		System.out.println(solution.removeX(input));
+	}
+
+}
