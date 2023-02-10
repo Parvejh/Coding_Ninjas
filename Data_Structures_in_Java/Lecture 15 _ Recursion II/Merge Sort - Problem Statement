@@ -1,0 +1,75 @@
+
+
+// Sort an array A using Merge Sort.
+// Change in the input array itself. So no need to return or print anything.
+
+import java.util.Scanner;
+
+public class Solution{
+
+	public static void mergeSort(int[] input) {
+        if (input.length== 0 || input.length== 1)
+            return;
+
+        int mid = input.length / 2;
+
+        int[] leftArray = new int[mid];
+        int[] rightArray = new int[input.length- mid];
+
+        // Creating left array
+        for (int i = 0; i < leftArray.length; i++) {
+            leftArray[i] = input[i];
+        }
+        // Creating right array
+        for (int i = 0; i < rightArray.length; i++) {
+            rightArray[i] = input[mid + i];
+        }
+        mergeSort(leftArray);
+        mergeSort(rightArray);
+		mergeArrays(leftArray, rightArray,input);
+    }
+
+    public static void mergeArrays(int[] arr1, int[] arr2, int[] result) {
+ 
+        int i=0 , j=0,k= 0;
+		
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] <= arr2[j]) {
+                result[k++] = arr1[i++];
+            } else {
+                result[k++] = arr2[j++];
+            }
+        }
+        while (i < arr1.length) {
+            result[k++] = arr1[i++];
+        }
+        while (j < arr2.length) {
+            result[k++] = arr2[j++];
+        }
+    }
+}
+
+public class Main{
+
+	public static int[] takeInput() {
+		Scanner s = new Scanner(System.in);
+		int size = s.nextInt();
+		int arr[] = new int[size];
+		for (int i = 0; i < size; i++) {
+			arr[i] = s.nextInt();
+		}
+		return arr;
+	}
+	
+	public static void printArray(int input[]) {
+		for(int i = 0; i < input.length; i++) {
+			System.out.print(input[i] + " ");
+		}
+	}
+	
+	public static void main(String[] args) {
+		int[] input = takeInput();
+		solution.mergeSort(input);
+		printArray(input);
+	}
+}
